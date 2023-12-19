@@ -26,10 +26,12 @@ class MainFlow: Flow {
         guard let step = step as? AppSteps else { return .none }
         
         switch step {
-        case .detail(_):
-            return .none
         case .home:
             return self.homeVCPresent()
+        case .search:
+            return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.search))
+        default:
+            return .none
         }
     }
 }

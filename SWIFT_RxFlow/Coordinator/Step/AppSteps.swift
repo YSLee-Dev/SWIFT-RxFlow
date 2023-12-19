@@ -10,6 +10,8 @@ import Foundation
 import RxFlow
 
 enum AppSteps: Step {
+    case tabbar
     case home
+    case search
     case detail(title: String)
 }

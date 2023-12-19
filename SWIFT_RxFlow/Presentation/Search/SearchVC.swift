@@ -1,17 +1,17 @@
 //
-//  MainVC.swift
+//  SearchVC.swift
 //  SWIFT_RxFlow
 //
-//  Created by 이윤수 on 12/17/23.
+//  Created by 이윤수 on 12/19/23.
 //
 
 import UIKit
 
-class MainVC: UIViewController {
-    let viewModel: MainViewModel
+class SearchVC: BaseVC {
+    let viewModel: SearchViewModel
     
     init(
-        viewModel: MainViewModel
+        viewModel: SearchViewModel
     ) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -23,7 +23,8 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        self.view.backgroundColor = .systemRed
+        self.titleLabel.text = "검색"
     }
 }
 

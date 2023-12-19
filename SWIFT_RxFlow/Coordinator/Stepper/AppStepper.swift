@@ -14,6 +14,6 @@ import RxFlow
 class AppStepper: Stepper {
     var steps: PublishRelay<Step> = .init()
     var initialStep: Step {
-        AppSteps.home
+        AppSteps.tabbar
     }
 }

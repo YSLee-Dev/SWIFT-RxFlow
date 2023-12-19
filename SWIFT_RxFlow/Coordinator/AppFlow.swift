@@ -25,17 +25,16 @@ class AppFlow: Flow {
         guard let step = step as? AppSteps else { return .none }
         
         switch step {
-        case .home:
-            let mainViewModel = MainViewModel()
-            let mainFlow = MainFlow(viewModel: mainViewModel)
+        case .tabbar:
+            let tabbarFlow = TabbarFlow()
+            let tabbarStepper = TabbarStepper()
             
-            Flows.use(mainFlow, when: .created) { root in
+            Flows.use(tabbarFlow, when: .created) { root in
                 self.window.rootViewController = root
             }
+            return .one(flowContributor: .contribute(withNextPresentable: tabbarFlow, withNextStepper: tabbarStepper))
             
-            return .one(flowContributor: .contribute(withNextPresentable: mainFlow, withNextStepper: mainViewModel))
-            
-        case .detail(_):
+        default:
             return .none
         }
     }
