@@ -1,5 +1,5 @@
 //
-//  SearchViewModel.swift
+//  DetailViewModel.swift
 //  SWIFT_RxFlow
 //
 //  Created by 이윤수 on 12/19/23.
@@ -12,39 +12,38 @@ import RxCocoa
 import RxFlow
 import NSObject_Rx
 
-class SearchViewModel: NSObject, Stepper {
+class DetailViewModel: NSObject, Stepper {
+    let type: DetailType
+    
     var steps: RxRelay.PublishRelay<RxFlow.Step> = .init()
+    
     var initialStep: Step {
-        AppSteps.search
+        AppSteps.detail(type: type)
     }
     
     struct Input {
-        let homeBtnTap: Observable<Void>
-        let detailBtnTap: Observable<Void>
+        let backBtn: Observable<Void>
     }
     
     struct Output {
-        
+        let title: Driver<String>
     }
     
     func transform(input: Input) -> Output {
-        input.homeBtnTap
+        input.backBtn
             .map { _ in
-                AppSteps.home
+                AppSteps.detailComplete
             }
             .bind(to: steps)
             .disposed(by: rx.disposeBag)
         
-        input.detailBtnTap
-            .map {
-                AppSteps.detail(type: .search)
-            }
-            .bind(to: steps)
-            .disposed(by: rx.disposeBag)
-        
-        return Output()
+        return Output(
+            title: Observable.just(self.type.rawValue)
+                .asDriver(onErrorDriveWith: .empty())
+        )
     }
     
-    override init() {
+    init(type: DetailType) {
+        self.type = type
     }
 }

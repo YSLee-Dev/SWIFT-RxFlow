@@ -34,10 +34,27 @@ class SearchFlow: Flow {
             
         case .home:
             return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.home))
+            
+        case .detail(let type):
+            return self.detailVCPresent(type: type)
+            
+        case .detailComplete:
+            self.navigationController.popViewController(animated: true)
+            return .none
+            
         default:
             return .none
         }
     }
     
     
+}
+
+private extension SearchFlow {
+    func detailVCPresent(type: DetailType) -> FlowContributors {
+        let viewModel = DetailViewModel(type: type)
+        let detailFlow = DetailFlow(navigationController: self.navigationController, viewModel: viewModel)
+        
+        return .one(flowContributor: .contribute(withNextPresentable: detailFlow, withNextStepper: viewModel))
+    }
 }

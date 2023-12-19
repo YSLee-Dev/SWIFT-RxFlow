@@ -16,4 +16,8 @@ class TabbarStepper: Stepper {
     var initialStep: Step {
         AppSteps.tabbar
     }
+    
+    func readyToEmitSteps() {
+        print("호출")
+    }
 }

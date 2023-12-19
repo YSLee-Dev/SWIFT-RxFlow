@@ -28,8 +28,17 @@ class MainFlow: Flow {
         switch step {
         case .home:
             return self.homeVCPresent()
+            
         case .search:
             return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.search))
+            
+        case .detail(let type):
+            return self.detailVCPresent(type: type)
+            
+        case .detailComplete:
+            self.navigationController.popViewController(animated: true)
+            return .none
+            
         default:
             return .none
         }
@@ -42,5 +51,12 @@ private extension MainFlow {
         self.navigationController.pushViewController(vc, animated: true)
         
         return .none
+    }
+    
+    func detailVCPresent(type: DetailType) -> FlowContributors {
+        let viewModel = DetailViewModel(type: type)
+        let detailFlow = DetailFlow(navigationController: self.navigationController, viewModel: viewModel)
+        
+        return .one(flowContributor: .contribute(withNextPresentable: detailFlow, withNextStepper: viewModel))
     }
 }

@@ -7,6 +7,11 @@
 
 import UIKit
 
+import Then
+import SnapKit
+import RxSwift
+import RxCocoa
+
 class SearchVC: BaseVC {
     let detailBtn = UIButton().then {
         $0.setTitle("디테일로 이동", for: .normal)
@@ -52,7 +57,7 @@ private extension SearchVC {
     
     func bind() {
         let input = SearchViewModel.Input(
-            searchBtnTap: self.moveBtn.rx.tap
+            homeBtnTap: self.moveBtn.rx.tap
                 .asObservable(),
             detailBtnTap: self.detailBtn.rx.tap
                 .asObservable()

@@ -25,6 +25,9 @@
 		C33DE1482B312FC700B20B93 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1472B312FC700B20B93 /* SearchViewModel.swift */; };
 		C33DE14A2B312FCD00B20B93 /* SearchFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1492B312FCD00B20B93 /* SearchFlow.swift */; };
 		C33DE1502B31522D00B20B93 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE14F2B31522D00B20B93 /* BaseVC.swift */; };
+		C33DE1532B316C0000B20B93 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1522B316C0000B20B93 /* DetailVC.swift */; };
+		C33DE1552B316C0400B20B93 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1542B316C0400B20B93 /* DetailViewModel.swift */; };
+		C33DE1572B316C7B00B20B93 /* DetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1562B316C7B00B20B93 /* DetailFlow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		C33DE1472B312FC700B20B93 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C33DE1492B312FCD00B20B93 /* SearchFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFlow.swift; sourceTree = "<group>"; };
 		C33DE14F2B31522D00B20B93 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		C33DE1522B316C0000B20B93 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		C33DE1542B316C0400B20B93 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		C33DE1562B316C7B00B20B93 /* DetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		C33DE1392B312AB200B20B93 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C33DE1512B316BF900B20B93 /* Detail */,
 				C33DE13D2B312B2E00B20B93 /* Tabbar */,
 				C33DE1442B312FA700B20B93 /* Search */,
 				C33DE1382B312AAB00B20B93 /* Main */,
@@ -155,7 +162,6 @@
 				C33DE14D2B31520600B20B93 /* Flow */,
 				C33DE14C2B3151BB00B20B93 /* Stepper */,
 				C33DE14B2B3151B100B20B93 /* Step */,
-				C33DE1322B3022E600B20B93 /* AppFlow.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -197,9 +203,11 @@
 		C33DE14D2B31520600B20B93 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				C33DE1322B3022E600B20B93 /* AppFlow.swift */,
+				C33DE1402B312C1800B20B93 /* TabbarFlow.swift */,
 				C33DE1492B312FCD00B20B93 /* SearchFlow.swift */,
 				C33DE1362B30270500B20B93 /* MainFlow.swift */,
-				C33DE1402B312C1800B20B93 /* TabbarFlow.swift */,
+				C33DE1562B316C7B00B20B93 /* DetailFlow.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -210,6 +218,15 @@
 				C33DE14F2B31522D00B20B93 /* BaseVC.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C33DE1512B316BF900B20B93 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C33DE1522B316C0000B20B93 /* DetailVC.swift */,
+				C33DE1542B316C0400B20B93 /* DetailViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,11 +343,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C33DE1572B316C7B00B20B93 /* DetailFlow.swift in Sources */,
+				C33DE1552B316C0400B20B93 /* DetailViewModel.swift in Sources */,
 				C33DE1462B312FC000B20B93 /* SearchVC.swift in Sources */,
 				C33DE1432B312E9C00B20B93 /* TabbarStepper.swift in Sources */,
 				C33DE1352B3026ED00B20B93 /* MainViewModel.swift in Sources */,
 				B6BB3A702B2F1D0F00EF2639 /* MainVC.swift in Sources */,
 				C33DE1502B31522D00B20B93 /* BaseVC.swift in Sources */,
+				C33DE1532B316C0000B20B93 /* DetailVC.swift in Sources */,
 				C33DE1332B3022E600B20B93 /* AppFlow.swift in Sources */,
 				C33DE1482B312FC700B20B93 /* SearchViewModel.swift in Sources */,
 				C33DE12F2B30215400B20B93 /* AppSteps.swift in Sources */,

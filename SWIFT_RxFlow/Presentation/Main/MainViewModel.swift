@@ -35,6 +35,13 @@ class MainViewModel: NSObject, Stepper {
             .bind(to: steps)
             .disposed(by: rx.disposeBag)
         
+        input.detailBtnTap
+            .map {
+                AppSteps.detail(type: .home)
+            }
+            .bind(to: steps)
+            .disposed(by: rx.disposeBag)
+        
         return Output()
     }
     
