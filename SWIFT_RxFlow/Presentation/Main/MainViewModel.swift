@@ -32,7 +32,6 @@ class MainViewModel: NSObject, Stepper {
             .map { _ in
                 AppSteps.search
             }
-            .debug()
             .bind(to: steps)
             .disposed(by: rx.disposeBag)
         

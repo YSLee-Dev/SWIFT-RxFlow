@@ -33,7 +33,7 @@ class SearchFlow: Flow {
             return .none
             
         case .home:
-            return .end(forwardToParentFlowWithStep: AppSteps.home)
+            return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.home))
         default:
             return .none
         }

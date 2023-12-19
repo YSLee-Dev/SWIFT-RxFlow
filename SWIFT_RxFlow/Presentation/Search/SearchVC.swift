@@ -8,6 +8,10 @@
 import UIKit
 
 class SearchVC: BaseVC {
+    let detailBtn = UIButton().then {
+        $0.setTitle("디테일로 이동", for: .normal)
+    }
+    
     let viewModel: SearchViewModel
     
     init(
@@ -23,8 +27,37 @@ class SearchVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemRed
-        self.titleLabel.text = "검색"
+        
+        self.layout()
+        self.attribute()
+        self.bind()
     }
 }
 
+private extension SearchVC {
+    func attribute() {
+        self.view.backgroundColor = .systemRed
+        self.titleLabel.text = "검색"
+        self.moveBtn.setTitle("홈으로 이동", for: .normal)
+    }
+    
+    func layout() {
+        self.view.addSubview(self.detailBtn)
+        self.detailBtn.snp.makeConstraints {
+            $0.top.equalTo(self.moveBtn.snp.bottom).offset(20)
+            $0.height.equalTo(50)
+            $0.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    func bind() {
+        let input = SearchViewModel.Input(
+            searchBtnTap: self.moveBtn.rx.tap
+                .asObservable(),
+            detailBtnTap: self.detailBtn.rx.tap
+                .asObservable()
+        )
+        
+        _ = self.viewModel.transform(input: input)
+    }
+}
