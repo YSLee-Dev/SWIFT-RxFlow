@@ -16,10 +16,13 @@ enum AppSteps: Step {
     
     case detail(type: DetailType)
     case detailComplete(type: DetailType)
+    
+    case setting
+    case settingComplete(isAll: Bool)
 }
 
 enum DetailType: String {
-    case home = "홈에서 온 디테일"
-    case search = "검색에서 온 디테일"
+    case home = "ROOT: HOME"
+    case search = "ROOT: SEARCH"
     case none = ""
 }

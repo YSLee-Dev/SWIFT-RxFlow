@@ -41,13 +41,37 @@ class DetailFlow: Flow {
             switch type {
             case .home:
                 return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.search))
+                
             case .search:
                 return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.home))
-            default :
+                
+            default:
                 return .end(forwardToParentFlowWithStep: AppSteps.detailComplete(type: .none))
             }
+            
+        case .setting:
+            return self.settingVCPresent()
+            
+        case .settingComplete(let isAll):
+            self.navigationController.dismiss(animated: true)
+            
+            if isAll {
+                return .one(flowContributor: .forwardToCurrentFlow(withStep: AppSteps.detailComplete(type: .none)))
+            } else {
+                return .none
+            }
+            
         default:
             return .none
         }
+    }
+}
+
+private extension DetailFlow {
+    func settingVCPresent() -> FlowContributors {
+        let viewModel = SettingViewModel()
+        let settingFlow = SettingFlow(navigationController: self.navigationController, viewModel: viewModel)
+        
+        return .one(flowContributor: .contribute(withNextPresentable: settingFlow, withNextStepper: viewModel))
     }
 }

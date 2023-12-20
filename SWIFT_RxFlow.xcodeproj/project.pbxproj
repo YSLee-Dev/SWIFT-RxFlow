@@ -28,6 +28,9 @@
 		C33DE1532B316C0000B20B93 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1522B316C0000B20B93 /* DetailVC.swift */; };
 		C33DE1552B316C0400B20B93 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1542B316C0400B20B93 /* DetailViewModel.swift */; };
 		C33DE1572B316C7B00B20B93 /* DetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1562B316C7B00B20B93 /* DetailFlow.swift */; };
+		C33DE15A2B32880F00B20B93 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE1592B32880E00B20B93 /* SettingVC.swift */; };
+		C33DE15C2B32881500B20B93 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE15B2B32881500B20B93 /* SettingViewModel.swift */; };
+		C33DE15E2B329F9000B20B93 /* SettingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33DE15D2B329F9000B20B93 /* SettingFlow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		C33DE1522B316C0000B20B93 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		C33DE1542B316C0400B20B93 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		C33DE1562B316C7B00B20B93 /* DetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFlow.swift; sourceTree = "<group>"; };
+		C33DE1592B32880E00B20B93 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		C33DE15B2B32881500B20B93 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		C33DE15D2B329F9000B20B93 /* SettingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,7 @@
 		C33DE1392B312AB200B20B93 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C33DE1582B32880500B20B93 /* Setting */,
 				C33DE1512B316BF900B20B93 /* Detail */,
 				C33DE13D2B312B2E00B20B93 /* Tabbar */,
 				C33DE1442B312FA700B20B93 /* Search */,
@@ -208,6 +215,7 @@
 				C33DE1492B312FCD00B20B93 /* SearchFlow.swift */,
 				C33DE1362B30270500B20B93 /* MainFlow.swift */,
 				C33DE1562B316C7B00B20B93 /* DetailFlow.swift */,
+				C33DE15D2B329F9000B20B93 /* SettingFlow.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -227,6 +235,15 @@
 				C33DE1542B316C0400B20B93 /* DetailViewModel.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		C33DE1582B32880500B20B93 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C33DE1592B32880E00B20B93 /* SettingVC.swift */,
+				C33DE15B2B32881500B20B93 /* SettingViewModel.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +366,7 @@
 				C33DE1432B312E9C00B20B93 /* TabbarStepper.swift in Sources */,
 				C33DE1352B3026ED00B20B93 /* MainViewModel.swift in Sources */,
 				B6BB3A702B2F1D0F00EF2639 /* MainVC.swift in Sources */,
+				C33DE15A2B32880F00B20B93 /* SettingVC.swift in Sources */,
 				C33DE1502B31522D00B20B93 /* BaseVC.swift in Sources */,
 				C33DE1532B316C0000B20B93 /* DetailVC.swift in Sources */,
 				C33DE1332B3022E600B20B93 /* AppFlow.swift in Sources */,
@@ -357,8 +375,10 @@
 				C33DE14A2B312FCD00B20B93 /* SearchFlow.swift in Sources */,
 				C33DE1312B3021F300B20B93 /* AppStepper.swift in Sources */,
 				B6BB3A6C2B2F1D0F00EF2639 /* AppDelegate.swift in Sources */,
+				C33DE15C2B32881500B20B93 /* SettingViewModel.swift in Sources */,
 				C33DE1372B30270500B20B93 /* MainFlow.swift in Sources */,
 				C33DE1412B312C1800B20B93 /* TabbarFlow.swift in Sources */,
+				C33DE15E2B329F9000B20B93 /* SettingFlow.swift in Sources */,
 				C33DE13F2B312B3D00B20B93 /* TabbarController.swift in Sources */,
 				B6BB3A6E2B2F1D0F00EF2639 /* SceneDelegate.swift in Sources */,
 			);

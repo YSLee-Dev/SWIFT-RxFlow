@@ -11,9 +11,13 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import SnapKit
+import Then
 
 class DetailVC: BaseVC {
     let otherBtn = UIButton()
+    let settingBtn = UIButton().then {
+        $0.setTitle("설정으로 이동", for: .normal)
+    }
     
     let viewModel: DetailViewModel
     
@@ -54,13 +58,22 @@ private extension DetailVC {
             $0.height.equalTo(50)
             $0.leading.trailing.equalToSuperview()
         }
+        
+        self.view.addSubview(self.settingBtn)
+        self.settingBtn.snp.makeConstraints {
+            $0.top.equalTo(self.otherBtn.snp.bottom).offset(20)
+            $0.height.equalTo(50)
+            $0.leading.trailing.equalToSuperview()
+        }
     }
     
     func bind() {
         let input = DetailViewModel.Input(
-            backBtn: self.moveBtn.rx.tap
+            backBtnTap: self.moveBtn.rx.tap
                 .asObservable(),
-            otherVCBtn: self.otherBtn.rx.tap
+            otherVCBtnTap: self.otherBtn.rx.tap
+                .asObservable(),
+            settingBtnTap: self.settingBtn.rx.tap
                 .asObservable()
         )
         

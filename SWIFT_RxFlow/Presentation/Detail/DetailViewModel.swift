@@ -22,8 +22,9 @@ class DetailViewModel: NSObject, Stepper {
     }
     
     struct Input {
-        let backBtn: Observable<Void>
-        let otherVCBtn: Observable<Void>
+        let backBtnTap: Observable<Void>
+        let otherVCBtnTap: Observable<Void>
+        let settingBtnTap: Observable<Void>
     }
     
     struct Output {
@@ -32,20 +33,27 @@ class DetailViewModel: NSObject, Stepper {
     }
     
     func transform(input: Input) -> Output {
-        input.backBtn
+        input.backBtnTap
             .map { _ in
                 AppSteps.detailComplete(type: .none)
             }
-            .bind(to: steps)
+            .bind(to: self.steps)
             .disposed(by: rx.disposeBag)
         
-        input.otherVCBtn
-            .withLatestFrom(Observable.just(type))
+        input.otherVCBtnTap
+            .withLatestFrom(Observable.just(self.type))
             .map {
                 $0 == .home ? AppSteps.detailComplete(type: .home) : AppSteps.detailComplete(type: .search)
             }
-            .bind(to: steps)
+            .bind(to: self.steps)
             .disposed(by: rx.disposeBag)
+        
+        input.settingBtnTap
+            .map { _ in
+                AppSteps.setting
+            }
+            .bind(to: steps)
+            .disposed(by: self.rx.disposeBag)
         
         return Output(
             title: Observable.just(self.type.rawValue)
