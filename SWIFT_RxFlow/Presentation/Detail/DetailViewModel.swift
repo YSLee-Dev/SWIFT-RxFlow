@@ -23,22 +23,36 @@ class DetailViewModel: NSObject, Stepper {
     
     struct Input {
         let backBtn: Observable<Void>
+        let otherVCBtn: Observable<Void>
     }
     
     struct Output {
         let title: Driver<String>
+        let btnTitle: Driver<String>
     }
     
     func transform(input: Input) -> Output {
         input.backBtn
             .map { _ in
-                AppSteps.detailComplete
+                AppSteps.detailComplete(type: .none)
+            }
+            .bind(to: steps)
+            .disposed(by: rx.disposeBag)
+        
+        input.otherVCBtn
+            .withLatestFrom(Observable.just(type))
+            .map {
+                $0 == .home ? AppSteps.detailComplete(type: .home) : AppSteps.detailComplete(type: .search)
             }
             .bind(to: steps)
             .disposed(by: rx.disposeBag)
         
         return Output(
             title: Observable.just(self.type.rawValue)
+                .asDriver(onErrorDriveWith: .empty()),
+            btnTitle: Observable.just(type)
+                .map {$0 == .home ? DetailType.search: DetailType.home}
+                .map {"\($0)으로 돌아가기"}
                 .asDriver(onErrorDriveWith: .empty())
         )
     }

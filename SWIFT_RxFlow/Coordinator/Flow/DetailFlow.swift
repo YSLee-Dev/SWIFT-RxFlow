@@ -18,7 +18,7 @@ class DetailFlow: Flow {
     var root: RxFlow.Presentable {
         self.navigationController
     }
-
+    
     init(
         navigationController: UINavigationController,
         viewModel: DetailViewModel
@@ -37,9 +37,15 @@ class DetailFlow: Flow {
             
             return .none
             
-        case .detailComplete:
-            return .end(forwardToParentFlowWithStep: AppSteps.detailComplete)
-            
+        case .detailComplete(let type):
+            switch type {
+            case .home:
+                return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.search))
+            case .search:
+                return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.home))
+            default :
+                return .end(forwardToParentFlowWithStep: AppSteps.detailComplete(type: .none))
+            }
         default:
             return .none
         }

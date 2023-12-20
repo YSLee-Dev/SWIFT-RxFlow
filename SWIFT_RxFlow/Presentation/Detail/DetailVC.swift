@@ -11,9 +11,10 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import SnapKit
-import Then
 
 class DetailVC: BaseVC {
+    let otherBtn = UIButton()
+    
     let viewModel: DetailViewModel
     
     init(
@@ -34,6 +35,7 @@ class DetailVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.layout()
         self.attribute()
         self.bind()
     }
@@ -41,19 +43,38 @@ class DetailVC: BaseVC {
 
 private extension DetailVC {
     func attribute() {
-        self.view.backgroundColor = .systemGreen
+        self.view.backgroundColor = .systemGray
         self.moveBtn.setTitle("돌아가기", for: .normal)
+    }
+    
+    func layout() {
+        self.view.addSubview(self.otherBtn)
+        self.otherBtn.snp.makeConstraints {
+            $0.top.equalTo(self.moveBtn.snp.bottom).offset(20)
+            $0.height.equalTo(50)
+            $0.leading.trailing.equalToSuperview()
+        }
     }
     
     func bind() {
         let input = DetailViewModel.Input(
             backBtn: self.moveBtn.rx.tap
+                .asObservable(),
+            otherVCBtn: self.otherBtn.rx.tap
                 .asObservable()
         )
         
         let output = self.viewModel.transform(input: input)
         output.title
             .drive(self.titleLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        output.btnTitle
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { vc, text in
+                vc.otherBtn.setTitle(text, for: .normal)
+            })
             .disposed(by: rx.disposeBag)
     }
 }
