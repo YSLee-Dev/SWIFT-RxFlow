@@ -33,6 +33,8 @@ class DetailFlow: Flow {
         switch step {
         case .detail(_):
             let vc = DetailVC(viewModel: viewModel)
+            vc.hidesBottomBarWhenPushed = true
+            
             self.navigationController.pushViewController(vc, animated: true)
             
             return .none

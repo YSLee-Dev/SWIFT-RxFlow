@@ -1,0 +1,45 @@
+PODS:
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxFlow (2.13.0):
+    - RxCocoa (>= 6.0.0)
+    - RxSwift (>= 6.0.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
+  - SnapKit (5.6.0)
+  - Then (3.0.0)
+
+DEPENDENCIES:
+  - "NSObject+Rx"
+  - RxCocoa
+  - RxFlow
+  - RxSwift
+  - SnapKit
+  - Then
+
+SPEC REPOS:
+  trunk:
+    - "NSObject+Rx"
+    - RxCocoa
+    - RxFlow
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Then
+
+SPEC CHECKSUMS:
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxFlow: 52f6f6379918392c1ea8cb62d8dcf2df9a5463dd
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+
+PODFILE CHECKSUM: 625c29661d5f454a334a36a7856a3d881fb727f9
+
+COCOAPODS: 1.14.3
