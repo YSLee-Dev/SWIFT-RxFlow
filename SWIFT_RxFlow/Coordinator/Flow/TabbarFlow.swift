@@ -13,6 +13,7 @@ import RxFlow
 
 class TabbarFlow: Flow {
     let tabbarController = TabbarController()
+    let mainViewModel = MainViewModel()
     
     var root: RxFlow.Presentable {
         self.tabbarController
@@ -25,12 +26,22 @@ class TabbarFlow: Flow {
         switch step {
         case .tabbar:
             return self.tabbarCreate()
+            
         case .home:
             self.tabbarController.selectedIndex = 0
             return .none
+            
         case .search:
             self.tabbarController.selectedIndex = 1
             return .none
+            
+        case .detail(let type):
+            if type == .searchToHome {
+                self.tabbarController.selectedIndex = 0
+                self.mainViewModel.steps.accept(AppSteps.detail(type: type))
+            }
+            return .none
+            
         default:
             return .none
         }
@@ -39,7 +50,6 @@ class TabbarFlow: Flow {
 
 private extension TabbarFlow {
     func tabbarCreate() -> FlowContributors {
-        let mainViewModel = MainViewModel()
         let mainFlow = MainFlow(viewModel: mainViewModel)
         
         let searchViewModel = SearchViewModel()

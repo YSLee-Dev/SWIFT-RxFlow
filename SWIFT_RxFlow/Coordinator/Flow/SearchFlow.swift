@@ -37,7 +37,11 @@ class SearchFlow: Flow {
             return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.home))
             
         case .detail(let type):
-            return self.detailVCPresent(type: type)
+            if type == .searchToHome {
+                return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.detail(type: type)))
+            } else {
+                return self.detailVCPresent(type: type)
+            }
             
         case .detailComplete:
             self.navigationController.popViewController(animated: true)

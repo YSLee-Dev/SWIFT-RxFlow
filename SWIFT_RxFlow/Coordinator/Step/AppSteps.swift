@@ -24,5 +24,7 @@ enum AppSteps: Step {
 enum DetailType: String {
     case home = "ROOT: HOME"
     case search = "ROOT: SEARCH"
+    case homeSetting = "ROOT: HOME, SETTING"
+    case searchToHome = "ROOT: SEARCH > HOME "
     case none = ""
 }

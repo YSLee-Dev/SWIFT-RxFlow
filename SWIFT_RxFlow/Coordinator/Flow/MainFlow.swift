@@ -34,7 +34,14 @@ class MainFlow: Flow {
             return .one(flowContributor: .forwardToParentFlow(withStep: AppSteps.search))
             
         case .detail(let type):
-            return self.detailVCPresent(type: type)
+            let isDetailPush = self.navigationController.viewControllers
+                .filter {$0 as? DetailVC != nil}
+                
+            if isDetailPush.isEmpty {
+                return self.detailVCPresent(type: type)
+            } else {
+                return .none
+            }
             
         case .detailComplete:
             self.navigationController.popViewController(animated: true)

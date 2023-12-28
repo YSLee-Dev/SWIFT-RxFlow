@@ -21,6 +21,7 @@ class SearchViewModel: NSObject, Stepper {
     struct Input {
         let homeBtnTap: Observable<Void>
         let detailBtnTap: Observable<Void>
+        let homeDetailBtnTap: Observable<Void>
     }
     
     struct Output {
@@ -38,6 +39,13 @@ class SearchViewModel: NSObject, Stepper {
         input.detailBtnTap
             .map {
                 AppSteps.detail(type: .search)
+            }
+            .bind(to: steps)
+            .disposed(by: rx.disposeBag)
+        
+        input.homeDetailBtnTap
+            .map {
+                AppSteps.detail(type: .searchToHome)
             }
             .bind(to: steps)
             .disposed(by: rx.disposeBag)

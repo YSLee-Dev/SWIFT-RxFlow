@@ -18,6 +18,10 @@ class MainVC: BaseVC {
         $0.setTitle("디테일로 이동", for: .normal)
     }
     
+    let settingBtn = UIButton().then {
+        $0.setTitle("설정으로 바로 이동", for: .normal)
+    }
+    
     let viewModel: MainViewModel
     
     init(
@@ -48,9 +52,18 @@ private extension MainVC {
     }
     
     func layout() {
-        self.view.addSubview(self.detailBtn)
+        [self.detailBtn, self.settingBtn]
+            .forEach {
+                self.view.addSubview($0)
+            }
         self.detailBtn.snp.makeConstraints {
             $0.top.equalTo(self.moveBtn.snp.bottom).offset(20)
+            $0.height.equalTo(50)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        self.settingBtn.snp.makeConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(50)
             $0.leading.trailing.equalToSuperview()
         }
@@ -61,6 +74,8 @@ private extension MainVC {
             searchBtnTap: self.moveBtn.rx.tap
                 .asObservable(),
             detailBtnTap: self.detailBtn.rx.tap
+                .asObservable(),
+            settingBtnTap: self.settingBtn.rx.tap
                 .asObservable()
         )
         

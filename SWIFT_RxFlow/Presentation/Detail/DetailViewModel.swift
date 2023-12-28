@@ -43,7 +43,7 @@ class DetailViewModel: NSObject, Stepper {
         input.otherVCBtnTap
             .withLatestFrom(Observable.just(self.type))
             .map {
-                $0 == .home ? AppSteps.detailComplete(type: .home) : AppSteps.detailComplete(type: .search)
+                $0 == .search ? AppSteps.detailComplete(type: .search) : AppSteps.detailComplete(type: .home)
             }
             .bind(to: self.steps)
             .disposed(by: rx.disposeBag)
@@ -59,7 +59,7 @@ class DetailViewModel: NSObject, Stepper {
             title: Observable.just(self.type.rawValue)
                 .asDriver(onErrorDriveWith: .empty()),
             btnTitle: Observable.just(type)
-                .map {$0 == .home ? DetailType.search: DetailType.home}
+                .map {$0 == .search ? DetailType.home: DetailType.search}
                 .map {"\($0)으로 돌아가기"}
                 .asDriver(onErrorDriveWith: .empty())
         )
