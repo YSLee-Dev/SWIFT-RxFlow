@@ -24,6 +24,7 @@ class MainFlow: Flow {
     
     func navigate(to step: RxFlow.Step) -> RxFlow.FlowContributors {
         guard let step = step as? AppSteps else { return .none }
+        print(step)
         
         switch step {
         case .home:
